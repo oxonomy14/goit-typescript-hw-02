@@ -17,8 +17,8 @@ const ImageCard: FC<ImageCardProps> = ({ item, onClick }) => {
       <img
         className={css.imageCard}
         src={item.urls.small}
-        alt={item.alt_description}
-        title={item.alt_description}
+        alt={item.alt_description ?? "No description"}
+        title={item.alt_description ?? "No description"}
       />
       <div className={css.imageDescription}>
         <p>

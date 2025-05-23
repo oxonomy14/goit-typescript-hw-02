@@ -2,6 +2,8 @@ export interface Image {
   id: string;
   color: string;
   alt_description: string;
+  width: number;
+  height: number;
   urls: {
     small: string;
     regular: string;
