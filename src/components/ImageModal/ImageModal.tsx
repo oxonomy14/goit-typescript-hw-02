@@ -1,8 +1,10 @@
 import Modal from "react-modal";
+import { FC } from "react";
+import { Image } from "../../types";
 
 Modal.setAppElement("#root");
 
-const customStyles = {
+const customStyles: Modal.Styles = {
   content: {
     top: "50%",
     left: "50%",
@@ -21,9 +23,18 @@ const customStyles = {
   },
 };
 
-const ImageModal = ({ isOpen, onRequestClose, selectedImage }) => {
-  /* ;*/
+interface ImageModalProps {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  selectedImage: Image | null;
+}
 
+const ImageModal: FC<ImageModalProps> = ({
+  isOpen,
+  onRequestClose,
+  selectedImage,
+}) => {
+  if (!selectedImage) return null;
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles}>
       <>

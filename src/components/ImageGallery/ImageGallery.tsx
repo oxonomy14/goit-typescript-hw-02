@@ -2,8 +2,15 @@ import css from "./ImageGallery.module.css";
 import Grid from "../Grid/Grid";
 import GridItem from "../GridItem/GridItem";
 import ImageCard from "../ImageCard/ImageCard";
+import { Image } from "../../types";
+import { FC } from "react";
 
-const ImageGallery = ({ images, onImageClick }) => {
+interface ImageGalleryProps {
+  images: Image[];
+  onImageClick: (image: Image) => void;
+}
+
+const ImageGallery: FC<ImageGalleryProps> = ({ images, onImageClick }) => {
   return (
     <section>
       <Grid>

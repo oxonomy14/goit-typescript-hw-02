@@ -9,16 +9,17 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import ImageModal from "./ImageModal/ImageModal";
 import Loader from "./Loader/Loader";
 import { fetchImages } from "../api/unsplash-api";
+import { Image } from "../types";
 
 const App = () => {
-  const [query, setQuery] = useState("");
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [query, setQuery] = useState<string>("");
+  const [images, setImages] = useState<Image[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
   //  Обробка запиту
   useEffect(() => {
@@ -38,26 +39,26 @@ const App = () => {
         setLoading(false);
       }
     };
-    getPhotos(query, page);
+    getPhotos();
     return () => {
       abortController.abort();
     };
   }, [query, page]);
 
   //  Функція запуску пошуку
-  const handleSearch = (newQuery) => {
+  const handleSearch = (newQuery: string): void => {
     if (newQuery === query) return; // не перезапускаємо, якщо такий самий
     setQuery(newQuery);
     setImages([]);
     setPage(1); // новий пошук = перша сторінка
   };
 
-  function openModal(image) {
+  function openModal(image: Image): void {
     setIsOpen(true);
     setSelectedImage(image);
   }
 
-  function closeModal() {
+  function closeModal(): void {
     setIsOpen(false);
     setSelectedImage(null);
   }

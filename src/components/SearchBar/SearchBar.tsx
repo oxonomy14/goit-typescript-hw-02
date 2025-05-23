@@ -1,12 +1,19 @@
 import css from "./SearchBar.module.css";
 import toast from "react-hot-toast";
+import { FC, FormEvent } from "react";
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = (evt) => {
+interface SearchBarProps {
+  onSearch: (dataQuery: string) => void;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
-    const form = evt.target;
 
-    const dataQuery = form.elements.query.value.trim();
+    const form = evt.currentTarget;
+    const formData = new FormData(form);
+    const dataQuery = formData.get("query")?.toString().trim();
+
     if (!dataQuery) {
       toast.error("Put something key words for search");
 

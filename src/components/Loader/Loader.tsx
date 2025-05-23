@@ -1,11 +1,12 @@
 import BarLoader from "react-spinners/BarLoader";
+import { FC } from "react";
 
-const override = {
+const override: React.CSSProperties = {
   display: "block",
   margin: "30px auto",
 };
 
-const Loader = () => {
+const Loader: FC = () => {
   return (
     <>
       <BarLoader

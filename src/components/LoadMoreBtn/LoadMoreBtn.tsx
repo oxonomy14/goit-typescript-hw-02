@@ -1,6 +1,13 @@
 import css from "./LoadMoreBtn.module.css";
+import { FC } from "react";
 
-const LoadMoreBtn = ({ loading, page, setPage }) => {
+interface LoadMoreBtnProps {
+  loading: boolean;
+  page: number;
+  setPage: (value: number) => void;
+}
+
+const LoadMoreBtn: FC<LoadMoreBtnProps> = ({ loading, page, setPage }) => {
   return (
     <>
       <button
