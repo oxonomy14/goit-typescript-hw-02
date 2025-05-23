@@ -24,7 +24,7 @@ const ImageCard: FC<ImageCardProps> = ({ item, onClick }) => {
         <p>
           <span>Author: </span>
           <a
-            href={item.links.portfolio}
+            href={item.links.portfolio ?? "#"}
             target="_blank"
             rel="noopener noreferrer"
           >
